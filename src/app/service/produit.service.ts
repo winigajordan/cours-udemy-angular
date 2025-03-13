@@ -37,4 +37,30 @@ export class ProduitService {
   listeProduit() : Produit[]{
     return this.produits;
   }
+
+  addProuit(Produit: Produit) {
+    this.produits.push(Produit);
+  }
+
+  deleteProduit(prod: Produit) {
+    //supprimer le produit prod du tableau produits
+    const index = this.produits.indexOf(prod, 0);
+    if (index > -1) {
+      this.produits.splice(index, 1);
+    }
+  }
+
+  findProduitById(idProduit: number) : Produit {
+    return  this.produits.find(produit => produit.idProduit == idProduit)!;
+    //return this.produit;
+  }
+
+  updateProduit(prod: Produit) {
+    const index = this.produits.indexOf(prod, 0);
+    if (index > -1) {
+      this.produits.splice(index, 1);
+      this.produits.splice(index, 0, prod);
+    }
+  }
+
 }

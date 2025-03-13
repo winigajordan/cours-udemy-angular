@@ -30,9 +30,7 @@
           let last = $last;
           ){
 
-          @if (last){
-            <h4>{{nbr}}</h4>
-          }
+
 
           <tbody>
           <td>{{index+1}}</td>
@@ -40,6 +38,10 @@
           <td>{{prod.nomProduit}}</td>
           <td>{{prod.prixProduit}} € </td>
           <td>{{prod.dateCreation | date : 'dd/MM/yyyy'}}</td>
+          <td><a class="btn btn-danger" (click)="supprimerProduit(prod)">Supprimer</a></td>
+          <td><a class="btn btn-success" [routerLink]="['/update-produit',prod.idProduit]">Modifier</a></td>
+
+
           </tbody>
         } @empty {
           <h4> Aucun produit trouvé</h4>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Produit} from '../model/produit.model';
+import {ProduitService} from '../service/produit.service';
 
 
 @Component({
@@ -16,15 +17,18 @@ export class AddProduitComponent implements OnInit {
 
 
   newProduit = new Produit();
-
-  constructor() {
+  message? : string;
+  //private produitService = new ProduitService();
+  constructor(private produitService: ProduitService) {
   }
 
   ngOnInit(): void {
   }
 
   addProduit() {
-    console.log(this.newProduit);
+    //console.log(this.newProduit);
+    this.produitService.addProuit(this.newProduit);
+    this.message = "Produit "+this.newProduit.nomProduit + " a été enregistré avec succes"
   }
 
 }
