@@ -1,0 +1,51 @@
+
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        @if (produits.length>0) {
+          <thead>
+          <tr>
+            <th>Index  </th><th>Id </th>
+            <th>Nom  </th>
+            <th>Prix  </th>
+            <th>Date de création  </th>
+          </tr>
+          </thead>
+        }
+
+        <!--
+        <tbody *ngFor="let prod of produits">
+          <td>
+            {{prod}}
+          </td>
+        </tbody>
+        -->
+
+        @for (prod of produits;
+          track prod.idProduit;
+          let index = $index;
+          let nbr = $count;
+          let first = $first;
+          let last = $last;
+          ){
+
+          @if (last){
+            <h4>{{nbr}}</h4>
+          }
+
+          <tbody>
+          <td>{{index+1}}</td>
+          <td>{{prod.idProduit}}</td>
+          <td>{{prod.nomProduit}}</td>
+          <td>{{prod.prixProduit}} € </td>
+          <td>{{prod.dateCreation | date : 'dd/MM/yyyy'}}</td>
+          </tbody>
+        } @empty {
+          <h4> Aucun produit trouvé</h4>
+        }
+
+      </table>
+    </div>
+  </div>
+</div>
