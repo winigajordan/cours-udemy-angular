@@ -28,6 +28,15 @@
                (ngModelChange)="currentProduit.dateCreation = $event"
                name="dateCreation" class="form-control">
                 <!-- -->
+      </div>
+
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Categorie </label>
+        <select class="form-control" id="idat" name="idCat" [(ngModel)]="updatedCatId">
+          @for (cat of categories; track cat.idCat){
+            <option [value]="cat.idCat"> {{cat.nomCat}} </option>
+          }
+        </select>
 
       </div>
     </div>

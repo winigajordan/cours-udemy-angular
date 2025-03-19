@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Produit} from '../model/produit.model';
+import {Categorie} from '../model/categorie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,36 +8,53 @@ import {Produit} from '../model/produit.model';
 export class ProduitService {
 
   produits : Produit[];
-
+  categories! : Categorie[];
   constructor() {
 
-    this.produits = [
-      { idProduit: 1, nomProduit: 'Téléphone', prixProduit: 299, dateCreation: new Date('2023-01-10') },
-      { idProduit: 2, nomProduit: 'Ordinateur Portable', prixProduit: 799, dateCreation: new Date('2022-06-15') },
-      { idProduit: 3, nomProduit: 'Tablette', prixProduit: 199, dateCreation: new Date('2024-02-20') },
-      { idProduit: 4, nomProduit: 'Casque Audio', prixProduit: 89, dateCreation: new Date('2023-03-05') },
-      { idProduit: 5, nomProduit: 'Montre Connectée', prixProduit: 120, dateCreation: new Date('2023-07-01') },
-      { idProduit: 6, nomProduit: 'Clavier', prixProduit: 49, dateCreation: new Date('2021-11-21') },
-      { idProduit: 7, nomProduit: 'Souris', prixProduit: 29, dateCreation: new Date('2022-12-17') },
-      { idProduit: 8, nomProduit: 'Enceinte Bluetooth', prixProduit: 59, dateCreation: new Date('2023-04-13') },
-      { idProduit: 9, nomProduit: 'Écran PC', prixProduit: 250, dateCreation: new Date('2023-08-30') },
-      { idProduit: 10, nomProduit: 'Webcam', prixProduit: 40, dateCreation: new Date('2022-09-08') },
-      { idProduit: 11, nomProduit: 'Disque Dur Externe', prixProduit: 99, dateCreation: new Date('2021-05-23') },
-      { idProduit: 12, nomProduit: 'Imprimante', prixProduit: 150, dateCreation: new Date('2023-01-15') },
-      { idProduit: 13, nomProduit: 'Câble USB', prixProduit: 10, dateCreation: new Date('2024-01-10') },
-      { idProduit: 14, nomProduit: 'Chargeur sans Fil', prixProduit: 45, dateCreation: new Date('2023-09-30') },
-      { idProduit: 15, nomProduit: 'Disque SSD', prixProduit: 120, dateCreation: new Date('2023-02-14') },
-      { idProduit: 16, nomProduit: 'Adaptateur HDMI', prixProduit: 15, dateCreation: new Date('2022-04-20') },
-      { idProduit: 17, nomProduit: 'Haut-Parleur', prixProduit: 75, dateCreation: new Date('2023-10-02') },
-      { idProduit: 18, nomProduit: 'Projecteur', prixProduit: 350, dateCreation: new Date('2024-03-01') },
-      { idProduit: 19, nomProduit: 'Lampes LED', prixProduit: 20, dateCreation: new Date('2021-08-17') },
-      { idProduit: 20, nomProduit: 'Clé USB', prixProduit: 15, dateCreation: new Date('2023-07-25') }
+    this.categories = [
+      { idCat: 1, nomCat: 'Électronique' },
+      { idCat: 2, nomCat: 'Mode' },
+      { idCat: 3, nomCat: 'Maison et Jardin' },
+      { idCat: 4, nomCat: 'Sport' },
+      { idCat: 5, nomCat: 'Alimentation' }
+    ];
+
+    this.produits =[
+      { idProduit: 1, nomProduit: 'Smartphone Galaxy', prixProduit: 999, dateCreation: new Date('2023-01-10'), categorie: { idCat: 1, nomCat: 'Électronique' } },
+      { idProduit: 2, nomProduit: 'Laptop HP Pavilion', prixProduit: 849, dateCreation: new Date('2022-06-15'), categorie: { idCat: 1, nomCat: 'Électronique' } },
+      { idProduit: 3, nomProduit: 'Casque Sony', prixProduit: 129, dateCreation: new Date('2024-02-20'), categorie: { idCat: 1, nomCat: 'Électronique' } },
+      { idProduit: 4, nomProduit: 'Montre Connectée Garmin', prixProduit: 199, dateCreation: new Date('2023-03-05'), categorie: { idCat: 2, nomCat: 'Mode' } },
+      { idProduit: 5, nomProduit: 'T-shirt Nike', prixProduit: 29, dateCreation: new Date('2023-07-01'), categorie: { idCat: 2, nomCat: 'Mode' } },
+      { idProduit: 6, nomProduit: 'Chaussures Adidas', prixProduit: 120, dateCreation: new Date('2021-11-21'), categorie: { idCat: 2, nomCat: 'Mode' } },
+      { idProduit: 7, nomProduit: 'Écouteurs Bose', prixProduit: 169, dateCreation: new Date('2022-12-17'), categorie: { idCat: 1, nomCat: 'Électronique' } },
+      { idProduit: 8, nomProduit: 'Veste en Cuir', prixProduit: 250, dateCreation: new Date('2023-04-13'), categorie: { idCat: 2, nomCat: 'Mode' } },
+      { idProduit: 9, nomProduit: 'Table de Salle à Manger', prixProduit: 299, dateCreation: new Date('2023-08-30'), categorie: { idCat: 3, nomCat: 'Maison et Jardin' } },
+      { idProduit: 10, nomProduit: 'Fauteuil Relax', prixProduit: 399, dateCreation: new Date('2023-01-15'), categorie: { idCat: 3, nomCat: 'Maison et Jardin' } },
+      { idProduit: 11, nomProduit: 'Chaise de Bureau Ergonomique', prixProduit: 150, dateCreation: new Date('2023-01-30'), categorie: { idCat: 3, nomCat: 'Maison et Jardin' } },
+      { idProduit: 12, nomProduit: 'Brouette', prixProduit: 85, dateCreation: new Date('2022-04-05'), categorie: { idCat: 3, nomCat: 'Maison et Jardin' } },
+      { idProduit: 13, nomProduit: 'Vélo de Route', prixProduit: 599, dateCreation: new Date('2023-07-12'), categorie: { idCat: 4, nomCat: 'Sport' } },
+      { idProduit: 14, nomProduit: 'Raquette de Tennis Wilson', prixProduit: 89, dateCreation: new Date('2023-02-25'), categorie: { idCat: 4, nomCat: 'Sport' } },
+      { idProduit: 15, nomProduit: 'Paire de Gants de Boxe', prixProduit: 40, dateCreation: new Date('2022-09-08'), categorie: { idCat: 4, nomCat: 'Sport' } },
+      { idProduit: 16, nomProduit: 'Sac de Foot Adidas', prixProduit: 50, dateCreation: new Date('2022-12-19'), categorie: { idCat: 4, nomCat: 'Sport' } },
+      { idProduit: 17, nomProduit: 'Bouteille d\'Eau Isotherme', prixProduit: 25, dateCreation: new Date('2023-09-01'), categorie: { idCat: 4, nomCat: 'Sport' } },
+      { idProduit: 18, nomProduit: 'Café en Grains Lavazza', prixProduit: 15, dateCreation: new Date('2023-01-10'), categorie: { idCat: 5, nomCat: 'Alimentation' } },
+      { idProduit: 19, nomProduit: 'Pâtes Barilla', prixProduit: 2, dateCreation: new Date('2024-02-18'), categorie: { idCat: 5, nomCat: 'Alimentation' } },
+      { idProduit: 20, nomProduit: 'Huile d\'Olive Bio', prixProduit: 12, dateCreation: new Date('2023-03-10'), categorie: { idCat: 5, nomCat: 'Alimentation' } }
     ];
   }
 
   listeProduit() : Produit[]{
     return this.produits;
   }
+
+  listeCategories(): Categorie[]{
+    return this.categories;
+  }
+
+  consulterCategorie(id:number): Categorie{
+    return this.categories.find(cat => cat.idCat  == id)!;
+  }
+
 
   addProuit(Produit: Produit) {
     this.produits.push(Produit);

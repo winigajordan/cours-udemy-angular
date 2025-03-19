@@ -4,6 +4,7 @@ import {ProduitService} from '../service/produit.service';
 import {Produit} from '../model/produit.model';
 import {FormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import {Categorie} from '../model/categorie.model';
 
 @Component({
   selector: 'app-update-produit',
@@ -17,6 +18,8 @@ import {DatePipe} from '@angular/common';
 export class UpdateProduitComponent  implements OnInit {
 
   currentProduit = new Produit();
+  categories! : Categorie[];
+  updatedCatId! : number;
 
 
   constructor(
@@ -28,12 +31,14 @@ export class UpdateProduitComponent  implements OnInit {
 
   ngOnInit(): void {
     this.currentProduit = this.produitService.findProduitById(this.activatedRoute.snapshot.params['id'])
-      console.log(this.currentProduit)
+    this.categories = this.produitService.categories;
+     this.updatedCatId = this.currentProduit.categorie.idCat;
     }
 
   updateProduit() {
       //console.log(this.currentProduit);
-    this.produitService.updateProduit(this.currentProduit)
+    this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
+    this.produitService.updateProduit(this.currentProduit);
     this.router.navigate(['/produits']);
   }
 }

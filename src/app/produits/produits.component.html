@@ -9,6 +9,7 @@
             <th>Index  </th><th>Id </th>
             <th>Nom  </th>
             <th>Prix  </th>
+            <th>Categorie  </th>
             <th>Date de création  </th>
           </tr>
           </thead>
@@ -37,6 +38,7 @@
           <td>{{prod.idProduit}}</td>
           <td>{{prod.nomProduit}}</td>
           <td>{{prod.prixProduit}} € </td>
+          <td>{{prod.categorie.nomCat}}</td>
           <td>{{prod.dateCreation | date : 'dd/MM/yyyy'}}</td>
           <td><a class="btn btn-danger" (click)="supprimerProduit(prod)">Supprimer</a></td>
           <td><a class="btn btn-success" [routerLink]="['/update-produit',prod.idProduit]">Modifier</a></td>
