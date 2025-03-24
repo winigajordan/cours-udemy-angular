@@ -25,9 +25,6 @@ export class AddProduitComponent implements OnInit {
   categories! : Categorie[];
   newCategorie!: Categorie;
 
-
-
-  //private produitService = new ProduitService();
   constructor(
     private produitService: ProduitService,
     private router: Router,
@@ -35,16 +32,22 @@ export class AddProduitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.categories = this.produitService.categories;
+     this.produitService.listeCategories().subscribe(
+       cats => {
+         this.categories = cats;
+       }
+     );
   }
 
   addProduit() {
-    //console.log(this.newProduit);
-    this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie = this.newCategorie;
-    this.produitService.addProuit(this.newProduit);
-   // this.message = "Produit "+this.newProduit.nomProduit + " a été enregistré avec succes"
-    this.router.navigate(['produits']);
+      this.newProduit.categorie = this.categories.find(cat => cat.idCat == this.newIdCat)!;
+      this.produitService.addProduit(this.newProduit).subscribe(
+        data => {
+          console.log(data);
+          console.log(data);
+          this.router.navigate(['produits']);
+        }
+      )
   }
 
 }
