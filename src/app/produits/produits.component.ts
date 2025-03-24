@@ -17,7 +17,7 @@ export class ProduitsComponent implements OnInit {
 
   produits! : Produit[];
 
-  constructor( private produitService: ProduitService, private router : Router  ) {
+  constructor( private produitService: ProduitService ) {
 
   }
 
