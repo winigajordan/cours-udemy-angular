@@ -1,0 +1,61 @@
+<div class="container">
+
+  <!--<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+      <label class="mb-2">Nom Produit</label>
+      <input type="text" class="form-control"  #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+   <button type="submit" (click)="rechercherProds()" class="btn btn-primary my-2 ml-2">Rechercher</button>
+    </div>
+  </form>-->
+
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+      <label>Nom Produit en tapant</label>
+      <input [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+    </div>
+  </form>
+
+
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Catégorie</th>
+          <th>Date de création</th>
+        </tr>
+        </thead>
+
+        <tbody>
+<!--          @for (prod of produits; track prod.idProduit; let index = $index) {-->
+  @for (prod of produits | searchFilter: searchTerm ; track prod.idProduit) {
+
+            <tr>
+              <td>{{ prod.idProduit }}</td>
+              <td>{{ prod.nomProduit }}</td>
+              <td>{{ prod.prixProduit }} €</td>
+              <td>{{ prod.categorie.nomCat }}</td>
+              <td>{{ prod.dateCreation | date: 'dd/MM/yyyy' }}</td>
+
+              <!--
+              <td><a class="btn btn-danger" (click)="supprimerProduit(prod)">Supprimer</a></td>
+              <td><a class="btn btn-success" [routerLink]="['/update-produit', prod.idProduit]">Modifier</a></td>
+              -->
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center">
+                <h4>Aucun produit trouvé</h4>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

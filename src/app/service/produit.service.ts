@@ -60,4 +60,14 @@ listeCategories(): Observable<CategorieWrapped> {
     return this.http.put(environment.apiURL, prod, httpOptions);
   }
 
+  rechercherParCategorie(id: number): Observable<Produit[]> {
+    const url = `${environment.apiURL}/prodscat/${id}`;
+    return this.http.get<Produit[]>(url, httpOptions);
+  }
+
+  rechercheParNom(nom:string) : Observable<Produit[]>{
+    const url = `${environment.apiURL}/prodsByName/${nom}`;
+    return this.http.get<Produit[]>(url, httpOptions);
+  }
+
 }

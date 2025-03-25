@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Catégories</label>
+    <select class="form-control form-control-lg" id="idCat" name="idCat"
+            [(ngModel)]="IdCategorie" (change)="onChange()">
+      @for (cat of categories; track cat.idCat) {
+        <option [value]="cat.idCat">{{ cat.nomCat }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Index</th>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Catégorie</th>
+          <th>Date de création</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          @for (prod of produits; track prod.idProduit; let index = $index) {
+            <tr>
+              <td>{{ index + 1 }}</td>
+              <td>{{ prod.idProduit }}</td>
+              <td>{{ prod.nomProduit }}</td>
+              <td>{{ prod.prixProduit }} €</td>
+              <td>{{ prod.categorie.nomCat }}</td>
+              <td>{{ prod.dateCreation | date: 'dd/MM/yyyy' }}</td>
+
+              <!--
+              <td><a class="btn btn-danger" (click)="supprimerProduit(prod)">Supprimer</a></td>
+              <td><a class="btn btn-success" [routerLink]="['/update-produit', prod.idProduit]">Modifier</a></td>
+              -->
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center">
+                <h4>Aucun produit trouvé</h4>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
