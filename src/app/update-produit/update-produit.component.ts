@@ -38,7 +38,7 @@ export class UpdateProduitComponent  implements OnInit {
     );
     this.produitService.listeCategories().subscribe(
       data => {
-        this.categories = data;
+        this.categories = data._embedded.categories;
       }
     )
 
