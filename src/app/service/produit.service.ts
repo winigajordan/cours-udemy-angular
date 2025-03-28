@@ -30,10 +30,9 @@ export class ProduitService {
 
 
 
-listeCategories(): Observable<CategorieWrapped> {
+ listeCategories(): Observable<CategorieWrapped> {
     return this.http.get<CategorieWrapped>(environment.apiUrlCat);
   }
-
 
 
   consulterCategorie(id:number): Observable<Categorie>{
@@ -68,6 +67,10 @@ listeCategories(): Observable<CategorieWrapped> {
   rechercheParNom(nom:string) : Observable<Produit[]>{
     const url = `${environment.apiURL}/prodsByName/${nom}`;
     return this.http.get<Produit[]>(url, httpOptions);
+  }
+
+  ajouterCategorie(cat : Categorie) : Observable<Categorie>{
+    return this.http.post<Categorie>(environment.apiUrlCat, cat, httpOptions);
   }
 
 }
