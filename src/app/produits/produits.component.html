@@ -12,7 +12,8 @@
             <th>Prix</th>
             <th>Catégorie</th>
             <th>Date de création</th>
-            <th>Actions</th>
+            @if (authService.isAdmin()) {
+            <th>Actions</th> }
           </tr>
           </thead>
         }
@@ -30,10 +31,15 @@
               <td>{{ prod.prixProduit }} €</td>
               <td>{{ prod.categorie.nomCat }}</td>
               <td>{{ prod.dateCreation | date: 'dd/MM/yyyy' }}</td>
-              <td>
-                <a class="btn btn-danger btn-sm me-2" (click)="supprimerProduit(prod)">Supprimer</a>
-                <a class="btn btn-success btn-sm" [routerLink]="['/update-produit', prod.idProduit]">Modifier</a>
-              </td>
+              @if (authService.isAdmin()) {
+                <td>
+                  <a class="btn btn-danger btn-sm me-2" (click)="supprimerProduit(prod)">Supprimer</a>
+                  <a class="btn btn-success btn-sm" [routerLink]="['/update-produit', prod.idProduit]">Modifier</a>
+                </td>
+              }
+
+
+
             </tr>
           } @empty {
             <tr>

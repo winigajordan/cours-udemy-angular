@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Produit} from '../model/produit.model';
 import {DatePipe} from '@angular/common';
 import {ProduitService} from '../service/produit.service';
-import {Router, RouterLink} from '@angular/router';
+import {RouterLink} from '@angular/router';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-produits',
@@ -17,7 +18,7 @@ export class ProduitsComponent implements OnInit {
 
   produits! : Produit[];
 
-  constructor( private produitService: ProduitService ) {
+  constructor( private produitService: ProduitService, public authService : AuthService ) {
 
   }
 
