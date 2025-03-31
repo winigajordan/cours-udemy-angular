@@ -29,6 +29,7 @@ export class ProduitsComponent implements OnInit {
   chargerProduits(): void {
     this.produitService.listeProduit().subscribe(prods => {
       this.produits = prods;
+      console.log(prods);
     })
   }
 

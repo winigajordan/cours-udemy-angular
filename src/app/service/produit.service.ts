@@ -23,15 +23,15 @@ export class ProduitService {
   }
 
   listeProduit() : Observable<Produit[]> {
-    // @ts-ignore
-    // @ts-ignore
-    return this.http.get<Produit[]>(environment.apiURL);
+
+    return this.http.get<Produit[]>(`${environment.apiURL}/all`);
   }
 
 
 
  listeCategories(): Observable<CategorieWrapped> {
-    return this.http.get<CategorieWrapped>(environment.apiUrlCat);
+
+    return this.http.get<CategorieWrapped>(environment.apiUrlCat) ;
   }
 
 
@@ -41,35 +41,39 @@ export class ProduitService {
 
 
   addProduit(prod: Produit): Observable<Produit> {
-    return this.http.post<Produit>(environment.apiURL, prod, httpOptions);
+    return this.http.post<Produit>(`${environment.apiURL}/addprod`, prod ,httpOptions);
   }
 
 
   deleteProduit(id: number){
-    const url = `${environment.apiURL}/${id}`;
+
+    const url = `${environment.apiURL}/delprod/${id}`;
     return this.http.delete(url, httpOptions);
   }
 
   findProduitById(id: number) : Observable<Produit> {
-    const url = `${environment.apiURL}/${id}`;
+
+    const url = `${environment.apiURL}/getbyid/${id}`;
     return this.http.get<Produit>(url);
   }
 
   updateProduit(prod: Produit) {
-    return this.http.put(environment.apiURL, prod, httpOptions);
+    return this.http.put(`${environment.apiURL}/updateprod`, prod,httpOptions);
   }
 
   rechercherParCategorie(id: number): Observable<Produit[]> {
+
     const url = `${environment.apiURL}/prodscat/${id}`;
-    return this.http.get<Produit[]>(url, httpOptions);
+    return this.http.get<Produit[]>(url);
   }
 
   rechercheParNom(nom:string) : Observable<Produit[]>{
     const url = `${environment.apiURL}/prodsByName/${nom}`;
-    return this.http.get<Produit[]>(url, httpOptions);
+    return this.http.get<Produit[]>(url);
   }
 
   ajouterCategorie(cat : Categorie) : Observable<Categorie>{
+
     return this.http.post<Categorie>(environment.apiUrlCat, cat, httpOptions);
   }
 

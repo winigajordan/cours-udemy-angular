@@ -33,6 +33,7 @@ export class UpdateProduitComponent  implements OnInit {
     this.produitService.findProduitById(this.activatedRoute.snapshot.params['id']).subscribe(
       prod =>{
         this.currentProduit = prod;
+        // @ts-ignore
         this.updatedCatId = this.currentProduit.categorie.idCat;
       }
     );
@@ -43,7 +44,8 @@ export class UpdateProduitComponent  implements OnInit {
     )
 
 
-     this.updatedCatId = this.currentProduit.categorie.idCat;
+     // @ts-ignore
+    this.updatedCatId = this.currentProduit.categorie.idCat;
     }
 
   updateProduit() {

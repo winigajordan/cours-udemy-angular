@@ -29,7 +29,7 @@
               <td>{{ prod.idProduit }}</td>
               <td>{{ prod.nomProduit }}</td>
               <td>{{ prod.prixProduit }} €</td>
-              <td>{{ prod.categorie.nomCat }}</td>
+              <td>{{ prod.categorie?.nomCat }}</td>
               <td>{{ prod.dateCreation | date: 'dd/MM/yyyy' }}</td>
               @if (authService.isAdmin()) {
                 <td>
