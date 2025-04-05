@@ -28,6 +28,21 @@ export class AuthService {
 
   constructor(private router: Router, private  http : HttpClient) { }
 
+
+  public regUser : User = new User();
+
+  setRegisteredUser (user : User) {
+    this.regUser=user;
+  }
+
+  getRegisteredUser(){
+    return this.regUser;
+  }
+
+
+
+
+
   login ( user : User){
     return this.http.post<User>(`${environment.apiUrlAuth}/login`, user, {observe: 'response'});
   }
@@ -51,25 +66,6 @@ export class AuthService {
     return this.token;
   }
 
-  /*
-  SignIn(user : User) : boolean {
-    let vaidUser : boolean = false;
-
-    this.users.forEach(currentUser => {
-      if (currentUser.username === user.username && currentUser.password === user.password) {
-        vaidUser = true;
-        this.loggedUser = currentUser.username;
-        this.isLoggedIn = true;
-        this.roles = currentUser.roles;
-        localStorage.setItem('loggedUser', this.loggedUser);
-        localStorage.setItem('isLoggedIn', String(this.isLoggedIn));
-        //console.log(localStorage);
-      }
-    })
-
-    return vaidUser;
-  }*/
-
 
   isAdmin(): boolean {
     if(!this.roles) return false;
@@ -86,30 +82,25 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-
-  serLoggedUserFromLocalStorage(loggedUser: string) {
-    this.loggedUser = loggedUser;
-    this.isLoggedIn = true;
-    //this.getUserRoles(loggedUser);
-  }
-
-  /*
-  private getUserRoles(loggedUser: string) {
-    this.users.forEach(user => {
-      if (user.username === loggedUser) {
-        this.roles = user.roles;
-      }
-    })
-  }
-
-   */
-  loadToken() {
+    loadToken() {
     this.token = localStorage.getItem('token')!;
     this.decodeJwt();
-
   }
 
   isTokenExpired() {
     return this.helper.isTokenExpired(this.token);
   }
+
+
+  registerUser(user : User) {
+    return this.http.post<User>(`${environment.apiUrlAuth}/register`, user, {observe: 'response'});
+  }
+
+  validateEmail(code : string){
+    return this.http.get<User>(environment.apiUrlAuth+'/validate/'+code);
+  }
+
+
+
+
 }

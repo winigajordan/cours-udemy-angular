@@ -8,6 +8,8 @@ import {ListeCategorieComponent} from './liste-categorie/liste-categorie.compone
 import {LoginComponent} from './login/login.component';
 import {ForbidenComponent} from './forbiden/forbiden.component';
 import {produitGuard} from './produit.guard';
+import {RegisterComponent} from './register/register.component';
+import {VerifEmailComponent} from './verif-email/verif-email.component';
 
 export const routes: Routes = [
 
@@ -19,6 +21,8 @@ export const routes: Routes = [
   {path:'listerCategories', component: ListeCategorieComponent,  canActivate:[produitGuard]},
   {path:'login', component: LoginComponent},
   {path:'app-forbiden', component: ForbidenComponent},
+  {path:'register', component: RegisterComponent},
+  {path:'verif-email', component: VerifEmailComponent},
 
 
 

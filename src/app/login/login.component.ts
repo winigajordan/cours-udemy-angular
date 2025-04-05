@@ -2,20 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user.model';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from '../service/auth.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-login',
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
-  styles: ``
 })
 export class LoginComponent implements OnInit {
 
   user = new User();
   err : number = 0;
+  errContent : string = 'Login ou mot de passe incorrect';
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -31,9 +32,20 @@ export class LoginComponent implements OnInit {
           this.authService.saveToken(jwtToken);
           this.router.navigate(['/']);
         },
-        error:() => {
+        error:(reqError) => {
           this.err = 1;
-        }
+          console.log(reqError);
+
+         if (reqError.error==null)
+         {
+           this.errContent = "Login ou mot de passe incorrect";
+         }
+
+          if (reqError.error.errorCause == "disabled") {
+            this.errContent = reqError.error.message;
+          }
+
+          }
         }
       )
     }

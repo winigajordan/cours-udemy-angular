@@ -38,7 +38,7 @@
               <td>{{ prod.idProduit }}</td>
               <td>{{ prod.nomProduit }}</td>
               <td>{{ prod.prixProduit }} €</td>
-              <td>{{ prod.categorie.nomCat }}</td>
+              <td>{{ prod.categorie?.nomCat }}</td>
               <td>{{ prod.dateCreation | date: 'dd/MM/yyyy' }}</td>
 
               <!--
@@ -46,7 +46,7 @@
               <td><a class="btn btn-success" [routerLink]="['/update-produit', prod.idProduit]">Modifier</a></td>
               -->
             </tr>
-          } @empty {
+          }  @empty {
             <tr>
               <td colspan="6" class="text-center">
                 <h4>Aucun produit trouvé</h4>

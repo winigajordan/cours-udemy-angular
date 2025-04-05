@@ -23,7 +23,6 @@ export class AddProduitComponent implements OnInit {
 
   newIdCat! : number;
   categories! : Categorie[];
-  newCategorie!: Categorie;
 
   constructor(
     private produitService: ProduitService,
